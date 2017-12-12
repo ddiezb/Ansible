@@ -1,0 +1,19 @@
+---
+- name: Test items
+  hosts: "{{target_host}}"
+  vars:
+    target_host: rhel74-2
+
+  tasks:
+
+  - name: Show items
+    debug: msg={{item}}
+    with_items:
+      - { field1: 10, field2: "Value assigned to field2" }
+      - {field1: 11}
+
+  - name: Show specific field of the items
+    debug: msg={{item.field1}}
+    with_items:
+      - { field1: 10, field2: "Value assigned to field2" }
+      - { field1: 11 }

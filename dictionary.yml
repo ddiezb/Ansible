@@ -1,0 +1,26 @@
+---
+- hosts: "{{host_target}}"
+  vars:
+    host_target: rhel74-2
+  tasks:
+
+# repository1 and repository2 are the keys in the dictionary
+  - name: "Set dictionary"
+    set_fact:
+      repos:
+        repository1:
+          cantidad: 10
+          val1: "Test1"
+          val2: "Test2"
+        repository2:
+          cantidad: 11
+          val3: "test3"
+          val4: "test4"
+
+  - name: "List all values from the dictionary"
+    debug: msg={{item.key}}={{item.value}}
+    with_dict: "{{repos}}"
+
+  - name: "List cantidad from dictionary"
+    debug: msg={{item.key}}={{item.value.cantidad}}
+    with_dict: "{{repos}}" 

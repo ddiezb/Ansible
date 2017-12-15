@@ -1,0 +1,34 @@
+---
+- hosts: "{{ target_hosts | default ('127.0.0.1') }}"
+  vars_files: 
+    - variables.yml
+  #vars:
+  #  target_hosts: rhel63
+  
+  tasks:
+
+    - name: Install rpms
+      yum:
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - ntp
+        - yum-utils 
+      notify: Restart ntp service
+
+    # variable defined in the vars_files
+    - debug: var=variable1
+
+  handlers:
+    - name: Restart ntp service
+      service:
+        name: ntpd
+        state: started
+        enabled: yes
+
+    # This handler will not be executed as it has not been referenced by a notify
+    - name: Second task in the handler to disable the service in chkconfig
+      service:
+        name: ntp
+        state: started
+        enabled: no 

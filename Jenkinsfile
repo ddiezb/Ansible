@@ -1,8 +1,8 @@
 pipeline{
 	agent any
 	stages {
-		steps{
-			stage('Check syntax stage'){
+		stage('Check syntax stage'){
+			steps{
 				build job: 'Check_syntax'
 			}
 		}

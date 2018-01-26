@@ -17,3 +17,6 @@
     with_items:
       - { field1: 10, field2: "Value assigned to field2" }
       - { field1: 11 }
+
+  - name: Show target_host
+    debug: var=target_host

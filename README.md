@@ -1,2 +1,2 @@
 ** Sample repository
-Sample repo for Jenkins pipeline testing
+Sample repo for Jenkins pipeline testing.
